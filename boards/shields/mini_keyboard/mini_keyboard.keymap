@@ -1,46 +1,8 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-#include <dt-bindings/zmk/pointing.h>
 
 / {
-    macros {
-        bt_clr_macro: bt_clr_macro {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&bt BT_CLR>;
-        };
-    };
-
-    behaviors {
-        // Hold for 2 seconds to Clear BT, Tap does nothing
-        long_bt: long_bt {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <2000>;
-            bindings = <&bt_clr_macro>, <&none>;
-        };
-    };
-
-    combos {
-        compatible = "zmk,combos";
-
-        // Top + Bottom = Studio Unlock
-        combo_unlock {
-            timeout-ms = <100>;
-            key-positions = <0 2>;
-            bindings = <&studio_unlock>;
-        };
-
-        // All 3 Keys = BT Clear (Hold 2s)
-        combo_bt_clr {
-            timeout-ms = <100>;
-            key-positions = <0 1 2>;
-            bindings = <&long_bt 0 0>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
